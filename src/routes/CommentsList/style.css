@@ -1,0 +1,26 @@
+.comments {
+  margin-top: 60px;
+  background: #fff;
+  padding: 6px 12px;
+  overflow: hidden;
+}
+
+.loader-margin {
+  margin: calc(50vh - 60px) auto;
+}
+
+.title {
+  font-size: 1.5em;
+  color: #333;
+  margin-right: 5px;
+}
+
+.item-details {
+  padding-bottom: 12px;
+  border-bottom: 1px solid #333;
+}
+
+.list-unstyled {
+  list-style: none;
+  padding-left: 0;
+}

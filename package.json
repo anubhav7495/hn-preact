@@ -1,0 +1,34 @@
+{
+  "name": "hn-preact",
+  "version": "1.0.0",
+  "description": "A simple hacker news reader using preact",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "webpack-dev-server",
+    "prod": "npm run clean && webpack -p",
+    "clean": "rimraf ./dist/*"
+  },
+  "author": "anubhav7495",
+  "license": "MIT",
+  "devDependencies": {
+    "autoprefixer": "^7.1.2",
+    "babel": "^6.23.0",
+    "babel-core": "^6.25.0",
+    "babel-loader": "^7.1.1",
+    "babel-plugin-transform-react-jsx": "^6.24.1",
+    "babel-preset-env": "^1.6.0",
+    "css-loader": "^0.28.4",
+    "extract-text-webpack-plugin": "^3.0.0",
+    "html-webpack-plugin": "^2.29.0",
+    "postcss-loader": "^2.0.6",
+    "rimraf": "^2.6.1",
+    "webpack": "^3.3.0",
+    "webpack-dev-server": "^2.5.1"
+  },
+  "dependencies": {
+    "preact": "^8.2.1",
+    "preact-markup": "^1.6.0",
+    "preact-router": "^2.5.5"
+  }
+}

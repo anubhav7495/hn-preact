@@ -1,0 +1,12 @@
+.content {
+  border-bottom: 1px solid #ccc;
+  overflow-wrap: break-word;
+}
+
+.content pre {
+  white-space: pre-wrap;
+}
+
+.child-padding {
+  padding-left: 18px;
+}

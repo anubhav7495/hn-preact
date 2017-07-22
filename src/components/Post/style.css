@@ -1,0 +1,16 @@
+.post {
+  padding: 15px 10px;
+}
+
+.post-title {
+  font-size: 16px;
+  color: #333;
+  margin-right: 5px;
+}
+
+.comment-link {
+  color: inherit;
+}
+.comment-link:hover {
+  color: #673ab8;
+}

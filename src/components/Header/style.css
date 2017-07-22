@@ -1,0 +1,37 @@
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: #673ab8;
+  z-index: 5;
+  overflow: hidden;
+}
+
+.header-link {
+  padding: 12px 6px;
+  color: #fff;
+  display: inline-block;
+  transition: all 0.3s ease;
+  border-bottom: 2px solid #673ab8;
+  font-size: 16px;
+}
+
+.header-link-active {
+  color: #fff;
+  border-color: #fff;
+}
+
+.brand {
+  font-size: 14px;
+  font-weight: 700;
+  border: 2px solid #fff;
+  padding: 4px;
+  margin: 0 10px;
+  letter-spacing: 1px;
+}
+
+@media (min-width: 960px) {
+  .header-link { padding-left: 12px; padding-right: 12px; }
+  .brand { padding: 4px; margin-left: 0; }
+}
