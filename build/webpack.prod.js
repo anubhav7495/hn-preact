@@ -1,12 +1,19 @@
 const path = require('path');
 const webpack = require('webpack');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const ExtractTextWebpackPlugin = require('extract-text-webpack-plugin');
 const Merge = require('webpack-merge');
 const CommonConfig = require('./webpack.common');
-const ExtractTextWebpackPlugin = require('extract-text-webpack-plugin');
 
 const ProdConfig = {
   // source-maps
   devtool: 'source-map',
+
+  // stats
+  stats: {
+    modules: false,
+    children: false
+  },
 
   // output
   output: {
@@ -32,6 +39,17 @@ const ProdConfig = {
 
   // plugins
   plugins: [
+    new HtmlWebpackPlugin({
+      title: 'HN Preact',
+      template: './src/index.ejs',
+      inject: true,
+      minify: {
+        removeComments: true,
+        collapseWhitespace: true,
+        removeAttributeQuotes: true
+      },
+      chunksSortMode: 'dependency',
+    }),
     new ExtractTextWebpackPlugin('app.[chunkHash:8].css'),
     new webpack.optimize.CommonsChunkPlugin({
       name: 'vendor',

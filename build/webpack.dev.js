@@ -1,5 +1,6 @@
 const path = require('path');
 const webpack = require('webpack');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 const Merge = require('webpack-merge');
 const CommonConfig = require('./webpack.common');
 
@@ -37,6 +38,12 @@ module.exports = Merge(CommonConfig, {
 
   // plugins
   plugins: [
-    new webpack.HotModuleReplacementPlugin()
+    new HtmlWebpackPlugin({
+      title: 'HN Preact',
+      template: './src/index.ejs',
+      inject: true,
+    }),
+    new webpack.HotModuleReplacementPlugin(),
+    new webpack.NoEmitOnErrorsPlugin()
   ]
 });
