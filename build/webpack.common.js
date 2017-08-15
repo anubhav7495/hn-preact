@@ -1,5 +1,4 @@
 const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   // entry
@@ -10,15 +9,23 @@ module.exports = {
   // loaders
   module: {
     rules: [
-      { test: /\.js$/, exclude: /node_modules/, use: 'babel-loader' },
+      {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        use: 'babel-loader'
+      },
+      {
+        test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
+        loader: 'url-loader?limit=10000',
+      },
+      {
+        test: /\.(mp4|webm|ogg|mp3|wav|flac|aac)(\?.*)?$/,
+        loader: 'url-loader?limit=10000',
+      },
+      {
+        test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
+        loader: 'url-loader?limit=10000',
+      }
     ]
   },
-
-  // plugins
-  plugins: [
-    new HtmlWebpackPlugin({
-      title: 'HN Preact',
-      template: './src/index.ejs'
-    }),
-  ]
 };
