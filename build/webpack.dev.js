@@ -1,3 +1,4 @@
+const fs = require('fs');
 const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
@@ -42,6 +43,8 @@ module.exports = Merge(CommonConfig, {
       title: 'HN Preact',
       template: './src/index.ejs',
       inject: true,
+      serviceWorkerLoader: `<script>${fs.readFileSync(path.join(__dirname,
+        './sw-dev.js'), 'utf-8')}</script>`
     }),
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoEmitOnErrorsPlugin()

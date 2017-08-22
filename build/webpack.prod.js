@@ -1,9 +1,11 @@
 const path = require('path');
 const webpack = require('webpack');
+const workboxPlugin = require('workbox-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextWebpackPlugin = require('extract-text-webpack-plugin');
 const Merge = require('webpack-merge');
 const CommonConfig = require('./webpack.common');
+const LoadMinifed = require('./load-minified');
 
 const ProdConfig = {
   // source-maps
@@ -39,31 +41,6 @@ const ProdConfig = {
 
   // plugins
   plugins: [
-    new HtmlWebpackPlugin({
-      title: 'HN Preact',
-      template: './src/index.ejs',
-      inject: true,
-      minify: {
-        removeComments: true,
-        collapseWhitespace: true,
-        removeAttributeQuotes: true
-      },
-      chunksSortMode: 'dependency',
-    }),
-    new ExtractTextWebpackPlugin('app.[chunkHash:8].css'),
-    new webpack.optimize.CommonsChunkPlugin({
-      name: 'vendor',
-      minChunks: ({resource}) => (
-        resource &&
-        /\.js$/.test(resource) &&
-        resource.indexOf('node_modules') >= 0
-      )
-    }),
-    new webpack.optimize.CommonsChunkPlugin({
-      name: 'manifest',
-      minChunks: Infinity,
-      filename: '[name].[hash:8].js'
-    }),
     new webpack.LoaderOptionsPlugin({
       minimize: true,
       debug: false
@@ -84,6 +61,38 @@ const ProdConfig = {
       },
       comments: false,
       sourceMap: true
+    }),
+    new HtmlWebpackPlugin({
+      title: 'HN Preact',
+      template: './src/index.ejs',
+      inject: true,
+      minify: {
+        removeComments: true,
+        collapseWhitespace: true,
+        removeAttributeQuotes: true
+      },
+      chunksSortMode: 'dependency',
+      serviceWorkerLoader: `<script>${LoadMinifed(path.join(__dirname,
+        './sw-prod.js'))}</script>`
+    }),
+    new ExtractTextWebpackPlugin('app.[chunkHash:8].css'),
+    new webpack.optimize.CommonsChunkPlugin({
+      name: 'vendor',
+      minChunks: ({resource}) => (
+        resource &&
+        /\.js$/.test(resource) &&
+        resource.indexOf('node_modules') >= 0
+      )
+    }),
+    new webpack.optimize.CommonsChunkPlugin({
+      name: 'manifest',
+      minChunks: Infinity,
+      filename: '[name].[hash:8].js'
+    }),
+    new workboxPlugin({
+      globDirectory: 'dist',
+      globPatterns: ['**/*.{html,js,css}'],
+      swDest: path.join('dist', 'sw.js')
     })
   ]
 };
