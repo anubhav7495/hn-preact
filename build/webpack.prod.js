@@ -92,7 +92,8 @@ const ProdConfig = {
     new workboxPlugin({
       globDirectory: 'dist',
       globPatterns: ['**/*.{html,js,css}'],
-      swDest: path.join('dist', 'sw.js')
+      swDest: path.join('dist', 'sw.js'),
+      navigateFallback: '/index.html'
     })
   ]
 };
